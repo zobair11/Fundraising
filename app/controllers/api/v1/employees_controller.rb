@@ -2,7 +2,7 @@ module Api
   module V1
     class EmployeesController < ApplicationController
       def index
-        employee = Employee.all
+        employee = filter_list(Employee.all)
         render json: employee, status: :ok
       end
 
@@ -16,6 +16,14 @@ module Api
       end
 
       private
+
+      def filter_list(employees)
+        if params[:province].present?
+          employees = employees.where(province: params[:province])
+        end
+
+        employees
+      end
 
       def employee_params
         params.permit(:name, :image, :percentage_raised, :target_amount, :province)
