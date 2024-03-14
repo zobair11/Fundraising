@@ -9,14 +9,14 @@ RSpec.describe Api::V1::EmployeesController, type: :controller do
   let(:expected_list_output) do
     [
       {
-        'id': employee.id,
-        'name': employee.name,
-        'image': employee.image,
-        'percentage_raised': employee.percentage_raised.to_s,
-        'target_amount': employee.target_amount.to_s,
-        'province': employee.province,
-        'created_at': formatted_time(employee.created_at),
-        'updated_at': formatted_time(employee.updated_at),
+        'id' => employee.id,
+        'name' => employee.name,
+        'image' => employee.image,
+        'percentage_raised' => employee.percentage_raised.to_s,
+        'target_amount' => employee.target_amount.to_s,
+        'province' => employee.province,
+        'created_at' => formatted_time(employee.created_at),
+        'updated_at' => formatted_time(employee.updated_at),
       }
     ]
   end
@@ -34,14 +34,14 @@ RSpec.describe Api::V1::EmployeesController, type: :controller do
       let(:filtered_param_expected_output) do
         [
           {
-            'id': employee.id,
-            'name': employee.name,
-            'image':employee.image,
-            'percentage_raised': employee.percentage_raised.to_s,
-            'province': employee.province,
-            'target_amount': employee.target_amount.to_s,
-            'created_at': formatted_time(employee.created_at),
-            'updated_at': formatted_time(employee.updated_at),
+            'id' => employee.id,
+            'name' => employee.name,
+            'image' => employee.image,
+            'percentage_raised' => employee.percentage_raised.to_s,
+            'province' => employee.province,
+            'target_amount' => employee.target_amount.to_s,
+            'created_at' => formatted_time(employee.created_at),
+            'updated_at' => formatted_time(employee.updated_at),
           },
         ]
       end
@@ -72,17 +72,17 @@ RSpec.describe Api::V1::EmployeesController, type: :controller do
 
       let(:expected_output) do
         {
-          'data': {
-            'id': Employee.last.id,
-            'name': valid_attributes[:name],
-            'image': valid_attributes[:image],
-            'percentage_raised': valid_attributes[:percentage_raised],
-            'target_amount': valid_attributes[:target_amount],
-            'province': valid_attributes[:province],
-            'created_at': formatted_time(Employee.last.created_at),
-            'updated_at': formatted_time(Employee.last.updated_at),
+          'data' => {
+            'id' => Employee.last.id,
+            'name' => valid_attributes[:name],
+            'image' => valid_attributes[:image],
+            'percentage_raised' => valid_attributes[:percentage_raised],
+            'target_amount' => valid_attributes[:target_amount],
+            'province' => valid_attributes[:province],
+            'created_at' => formatted_time(Employee.last.created_at),
+            'updated_at' => formatted_time(Employee.last.updated_at),
           },
-          'status': 'SUCCESS'
+          'status' => 'SUCCESS'
         }
       end
 
@@ -104,11 +104,11 @@ RSpec.describe Api::V1::EmployeesController, type: :controller do
 
       let(:output_with_error) do
         {
-          'data': {
-            'name': ["can't be blank"],
-            'target_amount': ["can't be blank"],
+          'data' => {
+            'name' => ["can't be blank"],
+            'target_amount' => ["can't be blank"],
           },
-          'status': 'ERROR'
+          'status' => 'ERROR'
         }
       end
 
