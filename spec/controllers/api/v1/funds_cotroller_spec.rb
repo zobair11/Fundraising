@@ -25,16 +25,16 @@ RSpec.describe Api::V1::FundsController, type: :controller do
 
       let(:expected_output) do
         {
-          "data" => {
-            "id" => Fund.first.id,
-            "donor_name" => valid_attributes[:donor_name],
-            "donation_amount" => valid_attributes[:donation_amount],
-            "phone_number" => valid_attributes[:phone_number],
-            "employee_id" => employee.id,
-            "created_at" => formatted_time(Fund.last.created_at),
-            "updated_at" => formatted_time(Fund.last.updated_at),
+          'data': {
+            'id': Fund.first.id,
+            'donor_name': valid_attributes[:donor_name],
+            'donation_amount': valid_attributes[:donation_amount],
+            'phone_number': valid_attributes[:phone_number],
+            'employee_id': employee.id,
+            'created_at': formatted_time(Fund.last.created_at),
+            'updated_at': formatted_time(Fund.last.updated_at),
           },
-          "status" => "SUCCESS"
+          'status': 'SUCCESS'
         }
       end
 
@@ -61,12 +61,12 @@ RSpec.describe Api::V1::FundsController, type: :controller do
 
       let(:output_with_error) do
         {
-          "data" => {
-            "donation_amount" => ["can't be blank"],
-            "donor_name" => ["can't be blank"],
-            "phone_number" => ["can't be blank"]
+          'data': {
+            'donation_amount': ["can't be blank"],
+            'donor_name': ["can't be blank"],
+            'phone_number': ["can't be blank"]
           },
-          "status" => "ERROR"
+          'status': 'ERROR'
         }
       end
 
@@ -79,6 +79,30 @@ RSpec.describe Api::V1::FundsController, type: :controller do
 
         expect(response.status).to eq 422
         expect(JSON.parse(response.body)).to eq(output_with_error)
+      end
+    end
+  end
+
+  describe 'GET #index' do
+    let!(:fund) { FactoryBot.create(:fund) }
+    let(:expected_output) do
+      [
+        {
+          'id': fund.id,
+          'employee_id': fund.employee_id,
+          'donor_name': fund.donor_name,
+          'phone_number': fund.phone_number,
+          'donation_amount': fund.donation_amount.to_s,
+          'created_at': formatted_time(fund.created_at),
+          'updated_at': formatted_time(fund.updated_at),
+        }
+      ]
+    end
+    context 'json responses' do
+      it 'returns all funds' do
+        get :index, params: { format: :json }
+
+        expect(JSON.parse(response.body)).to eq(expected_output)
       end
     end
   end
