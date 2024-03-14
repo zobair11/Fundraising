@@ -59,7 +59,6 @@ RSpec.describe Api::V1::EmployeesController, type: :controller do
         {
           name: 'Zamal',
           image: 'www.image.com',
-          percentage_raised: '20.0',
           target_amount: '200.0',
           province: 'Quebec',
         }
@@ -76,7 +75,7 @@ RSpec.describe Api::V1::EmployeesController, type: :controller do
             'id' => Employee.last.id,
             'name' => valid_attributes[:name],
             'image' => valid_attributes[:image],
-            'percentage_raised' => valid_attributes[:percentage_raised],
+            'percentage_raised' => '0.0',
             'target_amount' => valid_attributes[:target_amount],
             'province' => valid_attributes[:province],
             'created_at' => formatted_time(Employee.last.created_at),

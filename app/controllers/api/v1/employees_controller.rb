@@ -26,7 +26,7 @@ module Api
       end
 
       def employee_params
-        params.permit(:name, :image, :percentage_raised, :target_amount, :province)
+        params.permit(:name, :image, :target_amount, :province)
       end
     end
   end

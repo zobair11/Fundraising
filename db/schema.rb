@@ -17,7 +17,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_13_060222) do
   create_table "employees", force: :cascade do |t|
     t.string "name", null: false
     t.string "image"
-    t.decimal "percentage_raised", precision: 8, scale: 2, default: "0.0", null: false
+    t.decimal "percentage_raised", precision: 8, scale: 2, default: "0.0"
     t.decimal "target_amount", null: false
     t.string "province", null: false
     t.datetime "created_at", null: false
